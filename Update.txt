@@ -1,0 +1,159 @@
+-----------------------------------------------------------------------
+1st March 2019
+------------------------------------------------------------------------
+
+Site URL : https://www.bletechnolabs.com/projects/ronsafe/
+Admin URL : https://www.bletechnolabs.com/projects/ronsafe/administrator
+Login Credentials : admin@ronsafe.com / demo
+
+
+Frontend Update
+-----------------------
+
+The following frontend home page sections are integrated dynamically from the admin panel.
+
+-> Home page Banner
+-> About Us content
+-> Training Programs
+-> Our Services
+-> Our Company
+-> Partner logo sliding [Note : Under Our company section]
+
+The following frontend menu pages functionality are integrated dynamically from the admin panel
+-> About Us page content & image integrated dynamically
+-> Services 
+-> Training
+-> Contact Us
+
+Admin panel Updates
+------------------------------------
+-> Manage Contents
+-> Manage Services
+-> Manage Banners
+-> Members & Affiliation
+-> Manage Trainings
+-> My Account
+-> Change Password
+
+
+15th March
+----------------------------
+Site URL : https://www.bletechnolabs.com/projects/ronsafe/
+User Login credentails : suresh@bletindia.com / Demo@1234
+
+Admin URL : https://www.bletechnolabs.com/projects/ronsafe/administrator
+Admin Login Credentials : admin@ronsafe.com / demo
+
+
+Following Updates in Frontend
+
+
+-> User Registration
+-> User Login
+-> User Forgot Password
+
+
+-> Training Programs Details 
+-> Book your training
+-> At the time of Book your training, If an user is new, then fill up the form & then booking the training
+-> Existing / Returning customers are login in the pop up to book a training
+-> PayPal payment gateway integration for Training Booking
+
+
+-> Dynamic product listing
+-> Product search by category , name, price range
+-> Product Details
+
+
+
+After user loggedin following points are completed
+
+-> Latest Training Bookings in dashboard
+-> My Account for profile update
+-> User Change Password
+-> Training Booking History
+-> Training Booking Details
+
+Following Updates in Admin Section
+
+Product Management Module
+
+-> Manage Product Category (add/edit/delete)
+-> Manage Size (add/edit/delete)
+-> Manage Color (add/edit/delete)
+-> Manage Products (add/edit/delete)
+
+Training Moudle
+
+-> Manage Training Bookings
+-> Booking Details
+
+-> Manage Seo
+-> Manage Registered Users
+
+
+
+29th March
+--------------------------
+As per the requirement all functionality all most completed.Please check the following front end & back end updates.
+
+Front end  Update
+-------------------------------------------------
+
+Site URL : https://www.bletechnolabs.com/projects/ronsafe/
+User Login credentails : suresh@bletindia.com / Demo@1234
+
+
+My Dashboard
+
+My History
+    Order History
+    Booking History
+
+Account Settings
+    My account
+    Change Password
+
+Logout
+
+
+
+Back end Update
+--------------------------------------
+
+Admin URL : https://www.bletechnolabs.com/projects/ronsafe/administrator
+Admin Login Credentials : admin@ronsafe.com / demo
+
+
+CMS
+
+    Manage Contents
+    Manage Services
+    Manage Banners
+    Members & Affiliation
+
+Customer Management
+   Manage Users
+   Manage Orders
+
+
+Product Management
+   Manage Category
+   Manage Size
+   Manage Color
+   Manage Products
+
+Training Programs
+   Manage Trainings
+   Manage Bookings
+
+
+SETTINGS
+   My Account
+   Change Password
+   Manage Seo
+   Payment Setting
+
+
+
+

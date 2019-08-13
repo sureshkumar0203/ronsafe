@@ -1,0 +1,579 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"che",
+				"checkdnsrr"
+			],
+			[
+				"H",
+				"hash"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"fu",
+				"full_name"
+			],
+			[
+				"user",
+				"user_reg"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"error",
+				"error_reporting"
+			],
+			[
+				"phpin",
+				"phpinfo"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "routes/web.php",
+			"settings":
+			{
+				"buffer_size": 3518,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "@extends('admin.layouts.app')\n@section('title','Add Product')\n@section('content')\n@php \n$cat_data = Helpers::categoryList();\n$color_data = Helpers::colorList();\n$size_data = Helpers::sizeList();\n@endphp\n<script type=\"text/javascript\" src=\"{{ asset('public/ckeditor/ckeditor.js') }}\"></script>\n<style>\n.imageThumb {\n    max-height: 75px;\n    border: 2px solid;\n    padding: 1px;\n    cursor: pointer;\n}\n.pip {\n    display: inline-block;\n    margin: 10px 10px 0 0;\n}\n.remove {\n    display: block;\n    text-align: left;\n    cursor: pointer;\n}\n\n.remove i{color:red;}\n\n</style>\n<div class=\"container-fluid page-body-wrapper\">\n  @include('admin.includes.admin-sidebar')\n  <div class=\"main-panel\">\n    <div class=\"content-wrapper\">\n      <div class=\"col-12 stretch-card\">\n        <div class=\"card\">\n          <div class=\"card-body my-ac\">\n            <h5 class=\"display-5\">Add Product</h5>\n            <!--.text-danger.text-warning .text-info-->\n            <div style=\"height:25px;\"> @include('admin.includes.error-mesg') </div>\n            {{ Form::open(['route' => 'manage-products.store','name' => 'frm_add', 'id' => 'frm_add','data-toggle'=>\"validator\", 'role' => 'form', 'files'=>true, 'autocomplete' => 'off','class' =>'']) }}\n            <div class=\"form-group row\">\n              <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Category<span class=\"text-danger\">*</span></label>\n              <div class=\"col-sm-5\">\n               {!! Form::select('prd_cat_id',$cat_data,'', ['id' => 'prd_cat_id','required', 'class'=>'form-control','placeholder'=>'Select Category']) !!} \n               \n                <div class=\"error-hgt\">@if ($errors->has('prd_cat_id'))<p class=\"text-warning\">{{ $errors->first('prd_cat_id') }}</p>@endif</div> \n              </div>\n            </div>\n            \n            <div class=\"form-group row\">\n              <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Product Name<span class=\"text-danger\">*</span></label>\n              <div class=\"col-sm-5\">\n                {!! Form::text('prd_name',null,array('id' => 'prd_name','required', 'class'=>'form-control','placeholder'=>'')) !!}\n                \n                <div class=\"error-hgt\">@if ($errors->has('prd_name'))<p class=\"text-warning\">{{ $errors->first('prd_name') }}</p>@endif</div> \n              </div>\n            </div>\n            \n            <div class=\"form-group row\">\n              <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Upload Product Photo<span class=\"text-danger\">*</span></label>\n              <div class=\"col-sm-5\">\n                {!! Form::file('prd_photo', ['id' => 'prd_photo','onchange'=>'','required', 'class'=>'form-control file-upload-info','placeholder'=>'Upload Product Photo','accept'=>\"jpg,png\"]) !!}\n                \n                <div class=\"error-hgt\">@if ($errors->has('prd_photo'))<p class=\"text-warning\">{{ $errors->first('prd_photo') }}</p>@endif</div> \n              </div>\n            </div>\n            \n            \n            \n\n\n            <div class=\"form-group row\" >\n              <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Upload Optional Product Photo</label>\n              <div class=\"col-sm-5\">\n              {!! Form::file('opt_images[]', ['multiple','id' => 'opt_images','onchange'=>\"\",'','class'=>'form-control','accept'=>\"jpeg,jpg,png\"]) !!}\n              <div class=\"error-hgt\">@if ($errors->has('opt_images')) <p class=\"text-warning\">{{ $errors->first('opt_images') }}</p> @endif </div>\n                </div>\n              <div class=\" pip\" style=\"width:100%; padding-left:15px;\">\n  <div class=\" row\">            \n<div class=\"col-md-1\">\n<img class=\"imageThumb\" src=\"http://192.168.0.170/ronsafett/public/images/face4.jpg\" title=\"\" />\n<br/><span class=\"remove\"><i class='fa fa-trash red' ></i></span>\n</div>\n\n<div class=\"col-md-1\">\n<img class=\"imageThumb\" src=\"http://192.168.0.170/ronsafett/public/images/face4.jpg\" title=\"\" />\n<br/><span class=\"remove\"><i class='fa fa-trash'></i></span>\n</div>\n\n<div class=\"col-md-1\">\n<img class=\"imageThumb\" src=\"http://192.168.0.170/ronsafett/public/images/face4.jpg\" title=\"\" />\n<br/><span class=\"remove\"><i class='fa fa-trash'></i></span>\n</div>\n\n<div class=\"col-md-1\">\n<img class=\"imageThumb\" src=\"http://192.168.0.170/ronsafett/public/images/face4.jpg\" title=\"\" />\n<br/><span class=\"remove\"><i class='fa fa-trash'></i></span>\n</div>\n\n<div class=\"col-md-1\">\n<img class=\"imageThumb\" src=\"http://192.168.0.170/ronsafett/public/images/face4.jpg\" title=\"\" />\n<br/><span class=\"remove\"><i class='fa fa-trash'></i></span>\n</div>\n\n\n\n</div>\n\n</div>\n\n              </div>\n          \n            \n            \n            \n            \n          \n            <div class=\"form-group\" style=\"margin-top:15px;\">\n              <label>Product Details<span class=\"text-danger\">*</span></label>\n              {!! Form::textarea('prd_details','',array('id' => 'prd_details','required', 'class'=>'ckeditor form-control','size' => '30x5','placeholder'=>'')) !!}\n              \n              <div class=\"error-hgt\">@if ($errors->has('prd_details')) <p class=\"text-warning\">{{ $errors->first('prd_details') }}</p> @endif</div>\n            </div>\n            \n             \n            <!--<div class=\"form-group row\">\n              <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Price</label>\n              <div class=\"col-sm-5\">\n              {!! Form::text('training_price',null,array('id' => 'training_price','required', 'class'=>'form-control','placeholder'=>'')) !!}\n              \n              <div class=\"error-hgt\">@if ($errors->has('training_price'))<p class=\"text-warning\">{{ $errors->first('training_price') }}</p>@endif</div> \n              </div>\n            </div>-->\n            \n            \n            <div class=\"form-group col-md-8\">\n              <label style=\"margin-left:-10px;\"><strong>Set Product Price</strong></label>\n              <div style=\"width:80px; float:right; text-align:right; \">\n                <img src=\"{{ asset('public/images/plus.gif') }}\" width=\"16\" height=\"16\"  onClick=\"addProductPrice();\" style=\"cursor:pointer;\"/>&nbsp;\n                <img src=\"{{ asset('public/images/minus.gif') }}\" width=\"16\" height=\"16\" onClick=\"delProductPrice();\" style=\"cursor:pointer;\"/>\n              </div>\n                  \n              <div class=\"prod-specif-row\">\n                <div class=\"_row clearfix\" id=\"row_to_clone1\">\n                  <div class=\"row\" style=\"margin-bottom:5px;\">\n                    <input type=\"hidden\" name=\"prd_price_row_count\" id=\"prd_price_row_count\" value=\"1\">\n                    \n                    <div class=\"col-md-4\">\n                      <label>Color <span style=\"color:#F00;\">*</span></label>\n                      <select class=\"form-control\" id=\"color_id1\" name=\"color_id1\" required>\n                        <option  value=\"\">--Select Color--</option>\n                        @foreach($color_data as $color_key => $color_val)\n                        \t<option  value=\"{{ $color_key }}\">{{ $color_val }}</option>\n                        @endforeach\n                      </select>\n                    </div>\n                    \n                    <div class=\"col-md-4\">\n                      <label>Size <span style=\"color:#F00;\">*</span></label>\n                      <select class=\"form-control\" id=\"size_id1\" name=\"size_id1\" required>\n                        <option  value=\"\">--Select Size--</option>\n                        @foreach($size_data as $size_key => $size_val)\n                        \t<option  value=\"{{ $size_key }}\">{{ $size_val }}</option>\n                        @endforeach\n                      </select>\n                    </div>\n                    \n                    <div class=\"col-md-4\">\n                      <label>Price <span style=\"color:#F00;\">*</span></label>\n                      {!! Form::text('prd_price1','',array('id' => 'prd_price1','required','class'=>'form-control','placeholder'=>'Price', 'onKeyUp' => 'validatePrice(this)', 'maxlength'=>'10')) !!}\n                    </div>\n                  </div>\n                </div>\n                    \n                @php for($s=2;$s<=3;$s++){ @endphp\n                <div class=\"_row clearfix\" id=\"row_to_clone{{$s}}\" style=\"display:none;margin-bottom:5px;\">\n                  <div class=\"row\">\n                    <div class=\"col-md-4\">\n                      <select class=\"form-control\" id=\"color_id{{ $s }}\" name=\"color_id{{ $s }}\">\n                      <option  value=\"\">--Select Color--</option>\n                        @foreach($color_data as $colors_key => $color_val)\n                        <option  value=\"{{ $colors_key }}\">{{ $color_val }}</option>\n                        @endforeach\n                      </select>\n                    </div>\n                     \n                    <div class=\"col-md-4\">\n                      <select class=\"form-control\" id=\"size_id{{ $s }}\" name=\"size_id{{ $s }}\">\n                        <option  value=\"\">--Select Size--</option>\n                        @foreach($size_data as $sizes_key => $size_val)\n                        \t<option  value=\"{{ $sizes_key }}\">{{ $size_val }}</option>\n                        @endforeach\n                      </select>\n                    </div>\n                    \n                    <div class=\"col-md-4\">\n                      <input type=\"text\" class=\"form-control\" name=\"prd_price{{ $s }}\" id=\"prd_price{{ $s }}\" value=\"\" onKeyUp=\"validatePrice(this);\">\n                    </div>\n                  </div>\n                </div>\n                @php } @endphp\n              </div>\n            </div>\n               \n          \n              \n          <div class=\"form-group row\">\n            <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Meta Title<span class=\"text-danger\">*</span>:</label>\n            <div class=\"col-sm-5\">\n              {!! Form::textarea('prd_meta_title','',array('id' => 'prd_meta_title','required', 'class'=>'form-control','size' => '30x5','placeholder'=>'')) !!}\n            <div class=\"error-hgt\">@if ($errors->has('prd_meta_title')) <p class=\"text-warning\">{{ $errors->first('prd_meta_title') }}</p> @endif </div>\n            </div>\n          </div>\n          \n          <div class=\"form-group row\">\n            <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Meta Keyword:</label>\n            <div class=\"col-sm-5\">\n             {!! Form::textarea('prd_meta_keyword','',array('id' => 'prd_meta_keyword','', 'class'=>'form-control','size' => '30x5','placeholder'=>'')) !!}\n             \n           <div class=\"error-hgt\">@if ($errors->has('prd_meta_keyword')) <p class=\"text-warning\">{{ $errors->first('prd_meta_keyword') }}</p> @endif </div>\n            </div>\n          </div>\n          \n          \n          <div class=\"form-group row\">\n            <label for=\"exampleInputEmail2\" class=\"col-sm-3 col-form-label\">Meta Description:</label>\n            <div class=\"col-sm-5\">\n            {!! Form::textarea('prd_meta_description','',array('id' => 'prd_meta_description','', 'class'=>'form-control','size' => '30x5','placeholder'=>'')) !!}\n            \n              \n              \n           <div class=\"error-hgt\">@if ($errors->has('prd_meta_description')) <p class=\"text-warning\">{{ $errors->first('prd_meta_description') }}</p> @endif </div>\n            </div>\n          </div>\n            \n            \n            \n              \n            {{ Form::submit('Save', array('class' => 'btn btn-success mr-2')) }}\n              \n            <a href=\"{{ URL::to('administrator/manage-products') }}\" class=\"btn btn-light\"><i class=\"fa fa-backward\"></i> Back to List </a>\n            \n            {{ Form::close() }}\n          </div>\n        </div>\n      </div>\n    </div>\n    @include('admin.includes.admin-footer')\n  </div>\n</div>\n\n<script>\nfunction addProductPrice(){\n\tvar row = $('#prd_price_row_count').val();\n\tif(row==10){\n\t\talert(\"You can't add more than 3 rows\");\n\t}else{\n\t\tif($('#color_id'+row).val() == ''){\n\t\t\t$('#color_id'+row).focus();\n\t\t\treturn false;\n\t\t}\n\t\tif($('#size_id'+row).val() == ''){\n\t\t\t$('#size_id'+row).focus();\n\t\t\treturn false;\n\t\t}\n\t\tif($('#prd_price'+row).val() == ''){\n\t\t\t$('#prd_price'+row).focus();\n\t\t\treturn false;\n\t\t}\n\t\t\n\t\tif ($('#color_id' + row).val() != '' && $('#size_id' + row).val() != '' && $('#prd_price' + row).val() != '') {\n\t\t\tvar nextrow = parseInt(row)+1;\n\t\t\t$(\"#row_to_clone\"+nextrow).show();\n\t\t\t$('#prd_price_row_count').val(nextrow);\n\t\t}\n\t\t\n\t}\n}\n\nfunction delProductPrice(){\n\tvar row = $('#prd_price_row_count').val();\n\tif(row==1){\n\t\talert(\"You can't delete default row\");\n\t}else{\n\t  var nextrow = parseInt(row)-1;\n\t  $(\"#row_to_clone\"+row).hide();\n\t  \n\t  $('#color_id'+row).val('');\n\t  $('#size_id'+row).val('');\n\t  $('#prd_price'+row).val('');\n\t  \n\t  $('#prd_price_row_count').val(nextrow);\n\t}\t\n}\n</script>\n\n@push('script')\n<script>\n$(document).ready(function () {\n\tif (window.File && window.FileList && window.FileReader) {\n\t  $(\"#opt_images\").on(\"change\", function (e) {\n\t\t  var files = e.target.files,filesLength = files.length;\n\t\t  for (var i = 0; i < filesLength; i++) {\n\t\t\t  var f = files[i]\n\t\t\t  var fileReader = new FileReader();\n\t\t\t  fileReader.onload = (function (e) {\n\t\t\t\t  var file = e.target;\n\t\t\t\t  $(\"<div class=\\\"col-md-12 pip\\\">\" + \n\t\t\t\t  \"<img class=\\\"imageThumb\\\" src=\\\"\" + e.target.result + \"\\\" title=\\\"\" + file.name + \"\\\"/>\" +\n\t\t\t\t  \"<br/><span class=\\\"remove\\\"><i class='fa fa-trash'></i></span>\" +\n\t\t\t\t  \"</div>\").insertAfter(\"#opt_images\");\n\t\t\t\t  \n\t\t\t\t  $(\".remove\").click(function () {\n\t\t\t\t\t  $(this).parent(\".pip\").remove();\n\t\t\t\t  });\n\t\t\t  });\n\t\t\t  fileReader.readAsDataURL(f);\n\t\t  }\n\t  });\n\t} else {\n\t\talert(\"Your browser doesn't support to File API\")\n\t}\n});\n</script>\n@endpush\n\n@endsection",
+			"file": "resources/views/admin/product/create.blade.php",
+			"file_size": 14083,
+			"file_write_time": 131953145410000000,
+			"settings":
+			{
+				"buffer_size": 13757,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "resources/views/admin/product/edit.blade.php",
+			"settings":
+			{
+				"buffer_size": 14601,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/Http/helpers.php",
+			"settings":
+			{
+				"buffer_size": 3761,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/Http/Controllers/ProductController.php",
+			"settings":
+			{
+				"buffer_size": 6740,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/xampp/htdocs/ronsafett",
+		"/D/xampp/htdocs/ronsafett/app",
+		"/D/xampp/htdocs/ronsafett/resources",
+		"/D/xampp/htdocs/ronsafett/resources/views",
+		"/D/xampp/htdocs/ronsafett/resources/views/admin",
+		"/D/xampp/htdocs/ronsafett/resources/views/admin/product",
+		"/D/xampp/htdocs/ronsafett/resources/views/admin/size"
+	],
+	"file_history":
+	[
+		"/D/xampp/htdocs/ronsafett/resources/views/admin/size/edit.blade.php",
+		"/C/Users/suresh/Downloads/New folder/admin-temp/StarAdmin-Free-Bootstrap-Admin-Template-master/pages/icons/font-awesome.html",
+		"//192.168.0.111/pixiedust/app/MasterOrder.php",
+		"/D/xampp/htdocs/ronsafett/routes/web.php",
+		"//192.168.0.111/pixiedust/app/IntutivePriceSetting.php",
+		"/C/Users/suresh/Downloads/New folder/admin-temp/StarAdmin-Free-Bootstrap-Admin-Template-master/pages/tables/basic-table.html",
+		"/C/Users/suresh/Downloads/New folder/admin-temp/StarAdmin-Free-Bootstrap-Admin-Template-master/pages/ui-features/buttons.html",
+		"/C/Users/suresh/Downloads/New folder/admin-temp/StarAdmin-Free-Bootstrap-Admin-Template-master/pages/forms/basic_elements.html",
+		"/C/Users/suresh/Downloads/Kernel.php",
+		"/D/xampp/htdocs/laravel-model-test/app/Http/Middleware/RedirectIfAuthenticated.php",
+		"/C/Users/suresh/Downloads/disablepreventback.php",
+		"/C/Users/suresh/Desktop/paytm/TxnTest.php",
+		"/D/xampp/htdocs/laravel-model-test/app/Exceptions/Handler.php",
+		"/C/Users/suresh/Downloads/New folder/admin-temp/StarAdmin-Free-Bootstrap-Admin-Template-master/pages/samples/blank-page.html",
+		"/C/Users/suresh/Downloads/New folder/admin-temp/StarAdmin-Free-Bootstrap-Admin-Template-master/pages/samples/login.html",
+		"/D/xampp/htdocs/implements/MY-TUTORIALS/cls.php",
+		"/D/xampp/htdocs/shop366days-vendor/app/Http/helpers.php",
+		"/D/xampp/htdocs/implements/MY-TUTORIALS/php-array.php",
+		"/D/xampp/htdocs/shop366days-vendor/app/Http/Controllers/vendorController.php",
+		"/D/xampp/htdocs/shop366days-vendor/app/Http/Controllers/paymentGatewayController.php",
+		"/D/xampp/htdocs/shop366days-vendor/routes/web.php",
+		"/D/xampp/htdocs/laravel-mtest/resources/views/welcome.blade.php",
+		"/D/xampp/htdocs/shop366days-admin/resources/views/admin/includes/admin-sidebar.blade.php",
+		"/D/xampp/htdocs/shop366days-admin/app/Http/Controllers/adminController.php",
+		"/D/xampp/htdocs/shop366days-admin/routes/web.php",
+		"/D/xampp/htdocs/shop366days-admin/resources/views/admin/manage-newsletter.blade.php",
+		"/D/xampp/htdocs/fourseasons/routes/web.php",
+		"/D/xampp/htdocs/shop366days/routes/web.php",
+		"/D/xampp/htdocs/shop366days/resources/views/user-edit-profile.blade.php",
+		"/D/xampp/htdocs/shop366days/resources/views/checkout.blade -222- Copy (2).php",
+		"/D/xampp/htdocs/shop366days/public/js/custom-validation.js",
+		"/D/xampp/htdocs/shop366days/resources/views/product-details.blade.php",
+		"/D/xampp/htdocs/shop366days/resources/views/includes/master.blade.php",
+		"/D/xampp/htdocs/shop366days-vendor/app/Http/Controllers/Controller.php",
+		"/D/xampp/htdocs/shop366days-vendor/app/Http/Controllers/expVendorController.php",
+		"/D/xampp/htdocs/shop366days-vendor/app/Http/Controllers/apiController.php",
+		"/C/Users/suresh/Desktop/shop366days/config/cache.php",
+		"/C/Users/suresh/Desktop/shop366days/config/constants.php",
+		"/C/Users/suresh/Desktop/shop366days/config/database.php",
+		"/C/Users/suresh/Desktop/shop366days/config/filesystems.php",
+		"/C/Users/suresh/Desktop/shop366days/config/queue.php",
+		"/C/Users/suresh/Desktop/shop366days/config/mail.php",
+		"/C/Users/suresh/Desktop/shop366days/config/services.php",
+		"/C/Users/suresh/Desktop/shop366days/config/view.php",
+		"/C/Users/suresh/Desktop/shop366days/config/session.php",
+		"/D/xampp/htdocs/shop366days-vendor/.env",
+		"/C/Users/suresh/Desktop/shop366days/app/Mail/MailBuilder.php",
+		"/C/Users/suresh/Desktop/shop366days/config/broadcasting.php",
+		"/C/Users/suresh/Desktop/shop366days/config/auth.php",
+		"/C/Users/suresh/Desktop/shop366days/config/app.php",
+		"/C/Users/suresh/Desktop/shop366days/app/Providers/RouteServiceProvider.php",
+		"/C/Users/suresh/Desktop/shop366days/app/Providers/EventServiceProvider.php",
+		"/C/Users/suresh/Desktop/shop366days/app/Providers/BroadcastServiceProvider.php",
+		"/C/Users/suresh/Desktop/shop366days/app/Providers/AuthServiceProvider.php",
+		"/C/Users/suresh/Desktop/shop366days/app/Providers/AppServiceProvider.php",
+		"/D/xampp/htdocs/shop366days/app/Http/Controllers/homeController.php",
+		"/D/xampp/htdocs/shop366days-vendor/resources/views/vendors/forgot-psw-vendor.blade.php",
+		"/D/xampp/htdocs/laravel-model/config/pushnotification.php",
+		"/D/xampp/htdocs/rkm/config.php",
+		"/D/xampp/htdocs/bletindia/app/Http/Controllers/StyleofdesignController.php",
+		"/D/xampp/htdocs/bletindia/app/Http/Controllers/DigitalmarketingController.php",
+		"/D/xampp/htdocs/implements/google-drive-upload/README.md",
+		"/D/xampp/htdocs/implements/google-drive-upload/index.phtml",
+		"/D/xampp/htdocs/shop366days/resources/views/admin/add-category.blade.php",
+		"/D/xampp/htdocs/shop366days/resources/views/admin/add-product.blade.php",
+		"/D/xampp old/htdocs/fitzgibbon/wp-content/themes/blet-fitz/contact-us.php",
+		"/D/xampp/htdocs/upscale-event/resources/views/admin/includes/admin-sidebar.blade.php",
+		"/D/xampp/htdocs/bletindia/app/Http/Controllers/DbintegrationController.php",
+		"/D/xampp/htdocs/implements/check-box-price-calc/index.php",
+		"/D/xampp/htdocs/chorley-bunce/cbwebservice-backup-10-4-2017.php",
+		"/D/xampp/htdocs/chorley-bunce/cbwebservice-6-12-2016.php",
+		"/D/xampp/htdocs/chorley-bunce/cbwebservice.php",
+		"/D/xampp/htdocs/SendGrid/README.md",
+		"/D/xampp/htdocs/shop366days/resources/views/admin/add-product.blade - Copy (2).php",
+		"/D/xampp/htdocs/shop360days/resources/views/errors.blade.php",
+		"/D/xampp/htdocs/lay-buys/routes/web.php",
+		"/D/xampp/htdocs/shop360days/index.php",
+		"/C/Users/suresh/Downloads/New folder/Paytm_Web_Sample_Kit_PHP-master/README.md",
+		"/C/Users/suresh/Downloads/google-api-php-client-master/README.md",
+		"/D/xampp/htdocs/laravel-model/routes/web.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/LoginController.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/Auth/LoginController.php",
+		"/D/xampp/htdocs/laravel-model/app/UserLogin.php",
+		"/D/xampp/htdocs/laravel-model/resources/views/user-dashboard.blade.php",
+		"/D/xampp/htdocs/laravel-model/resources/views/admin/auth/login.blade.php",
+		"//192.168.0.222/multiauth/routes/web.php",
+		"/D/xampp/htdocs/laravel-model/app/Exceptions/Handler.php",
+		"/D/xampp/htdocs/laravel-model/app/Providers/AppServiceProvider.php",
+		"/D/xampp/htdocs/laravel-model/app/Providers/RouteServiceProvider.php",
+		"/D/xampp/htdocs/laravel-model/app/Providers/AuthServiceProvider.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/Auth/RegisterController.php",
+		"//192.168.0.222/multiauth/app/Http/Controllers/Auth/LoginController.php",
+		"//192.168.0.222/multiauth/resources/views/layouts/app.blade.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/Auth/UserLoginController.php",
+		"//192.168.0.222/multiauth/app/Exceptions/Handler.php",
+		"//192.168.0.222/multiauth/app/Providers/AuthServiceProvider.php",
+		"//192.168.0.222/multiauth/app/Http/Kernel.php",
+		"/D/xampp/htdocs/laravel-model/app/Providers/EventServiceProvider.php",
+		"/D/xampp/htdocs/laravel-model/app/Providers/BroadcastServiceProvider.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Kernel.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Middleware/RedirectIfAuthenticated.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/userRegistrationController.php",
+		"//192.168.0.222/multiauth/app/Http/Controllers/AdminController.php",
+		"//192.168.0.222/multiauth/resources/views/admin.blade.php",
+		"//192.168.0.222/multiauth/resources/views/components/who-is-logged-in.blade.php",
+		"//192.168.0.222/multiauth/resources/views/auth/admin-login.blade.php",
+		"//192.168.0.222/multiauth/resources/views/home.blade.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/UserLoginController.php",
+		"/D/xampp/htdocs/laravel-model/app/user_registration.php",
+		"/D/xampp/htdocs/laravel-model/resources/views/user-login.blade.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/userLoginController.php",
+		"/D/xampp/htdocs/laravel-model/app/user_login.php",
+		"/D/xampp/htdocs/laravel-model/resources/views/home.blade.php",
+		"/D/xampp/htdocs/implements/livechat_api-1.3.1/index.php",
+		"/D/xampp/htdocs/laravel-model/resources/views/includes/header.blade.php",
+		"/D/xampp/htdocs/laravel-model/resources/views/includes/footer.blade.php",
+		"//192.168.0.222/omfed/app/Http/Controllers/BmcController.php",
+		"/D/xampp/htdocs/laravel-model/database/migrations/2018_08_09_110355_create_user_registrations_table.php",
+		"//192.168.0.222/omfed/app/Addition.php",
+		"/D/xampp/htdocs/laravel-model/app/Http/Controllers/RegistersController.php",
+		"/D/my-tutorials/php-array.php",
+		"/D/xampp/htdocs/model-test/app/Http/Controllers/Auth/LoginController.php",
+		"/D/xampp/htdocs/model-test/resources/views/auth/admin/login.blade.php",
+		"/D/xampp/htdocs/laravel-model/app/User.php",
+		"/C/Users/suresh/Downloads/New folder/booking/auth.php",
+		"/D/xampp/htdocs/lay-buys/resources/views/admin/rm-payment-failed.blade.php",
+		"/D/xampp/htdocs/lay-buys/resources/views/order-details.blade.php",
+		"/C/Users/suresh/Desktop/lay-buys/app/Http/Controllers/adminController.php"
+	],
+	"find":
+	{
+		"height": 44.0
+	},
+	"find_in_files":
+	{
+		"height": 116.0,
+		"where_history":
+		[
+			"D:\\xampp\\htdocs\\lms",
+			"D:\\xampp\\htdocs\\arista - Copy",
+			"",
+			"D:\\xampp\\htdocs\\arista"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"active",
+			"ui-basic",
+			"ui-basi",
+			"Buttons",
+			"paymentProcess",
+			"news",
+			"        \n",
+			"noti",
+			"device",
+			">\n",
+			"exit",
+			"\n<",
+			"Input",
+			"form-control",
+			"logout",
+			"master_order",
+			"submitPayuForm",
+			"updateCartItem",
+			"submitPayuForm",
+			"hash",
+			"booking-success",
+			"booking_started_ary",
+			"PAYU_BASE_URL",
+			"r1",
+			"privacy",
+			"limit",
+			"Session",
+			"send",
+			"adminPswRecovery",
+			"Switch",
+			"UrlGenerator",
+			" <!--  @include('includes.footer') -->",
+			"UrlGenerator",
+			"customize_register",
+			"fetch",
+			"mysqli_fetch_array",
+			"fetchSingle",
+			"$sql",
+			"($sql)",
+			"mysql_",
+			"fetchSingle",
+			"json",
+			"Mcrypt"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"input",
+			"col-lg-6 form-control",
+			"mysqli_fetch_assoc",
+			"($this->connection,$sql)",
+			"mysqli_"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "routes/web.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3518,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "resources/views/admin/product/create.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13757,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								82,
+								202
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "resources/views/admin/product/edit.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14601,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6713,
+								6714
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3312.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/Http/helpers.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2946.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/Http/Controllers/ProductController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6740,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4765,
+								4765
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1449.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 44.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ronsafett.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 349.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

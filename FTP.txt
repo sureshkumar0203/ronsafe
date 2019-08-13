@@ -1,0 +1,9 @@
+Godaddy Login credentials
+-----------------------------------
+sales@bletechnolabs.com
+Blet@1234
+
+
+Site URL : http://www.ronsafett.com/
+Admin URL : http://www.ronsafett.com/administrator
+Login Credentials : admin@ronsafe.com / demo
